@@ -4,30 +4,30 @@
 
 int main()
 {
-    long int cc;
+    long int credit_card;
     int digit_count = 0;
     int sum = 0;
 
-    //asks user for input of card number
+    ///input credit card
     do
     {
-        printf("Credit Card Number Identifier: ");
-        scanf("%ld", &cc);
+        printf("Number: ");
+        scanf("%ld", &credit_card);
     }
-    while (cc < 1);
+    while (credit_card < 1);
 
-    //variables that store the first numbers of the cards
-    int AMEX = cc / pow(10, 13);
-    int MASTERCARD = cc / pow(10, 14);
+    
+    int AMEX = credit_card / pow(10, 13);
+    int MASTERCARD = credit_card / pow(10, 14);
     int VISA[2];
-    VISA[0] = cc / pow(10, 12);
-    VISA[1] = cc / pow(10, 15);
+    VISA[0] = credit_card / pow(10, 12);
+    VISA[1] = credit_card / pow(10, 15);
 
-    //checksum for the luhn algorithm
-    while (cc > 0)
+    //luhn algo
+    while (credit_card > 0)
     {
-        int digit = cc % 10;
-        cc /= 10;
+        int digit = credit_card % 10;
+        credit_card /= 10;
         digit_count++;
 
         if (digit_count % 2 == 0)
@@ -42,7 +42,7 @@ int main()
         sum += digit;
     }
 
-    
+    // credit card company determination
     if (sum % 10 == 0)
     {
         if (AMEX == 34 || AMEX == 37)
